@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -40,62 +39,15 @@ public class App extends Application
             Settings.closeProgramAndSave(window);
         });
 
-        gridPane.setPadding(new Insets(12,12,12,12));
+        Display display = new Display().invoke();
+        Label label = display.getLabel();
+        Label number1 = display.getNumber1();
+        TextField numberInput1 = display.getNumberInput1();
+        Label number2 = display.getNumber2();
+        TextField number1Input2 = display.getNumber1Input2();
 
 
-
-        Label label = new Label("Calculate Binary");
-        GridPane.setConstraints(label,1,0);
-
-        // TODO  User
-
-
-        Label userName = new Label("Number 1 ");
-        GridPane.setConstraints(userName,0,1);
-        // Input
-        TextField userInput = new TextField("0");
-        GridPane.setConstraints(userInput,1,1);
-
-
-        Label number1 = new Label("Number 2");
-        GridPane.setConstraints(number1,0,3);
-        // Input
-        TextField number1Input= new TextField("0");
-        GridPane.setConstraints(number1Input,1,3);
-
-        login = new Button("Login");
-        close = new Button("Close");
-        GridPane.setConstraints(login,2,7);
-        GridPane.setConstraints(close,3,7);
-
-        close.setOnAction(event ->  {
-            event.consume();
-            Settings.closeProgramAndSave(window);
-        });
-
-
-        login.setOnAction(event -> {
-            try {
-
-
-                int nmb1 = Integer.parseInt(number1Input.getText());
-                int nmb2 = Integer.parseInt(userInput.getText());
-                int nmb3 = Settings.calcSum(nmb1,nmb2);
-                event.consume();
-                GridPane.setConstraints(label,1,12);
-
-                label.setTextFill(Color.FIREBRICK);
-
-                label.setText("Result :------> "+ Integer.toBinaryString(nmb2) + " + " +Integer.toBinaryString(nmb1) + " = " + Integer.toBinaryString(nmb3));
-            }
-            catch (NumberFormatException e){
-                System.out.println("Nu ai introdus ce trb");
-            }
-            }
-            );
-
-
-        gridPane.getChildren().addAll(label,userName,userInput,number1,number1Input,login,close);
+        Settings.loginAction(label, number1, numberInput1, number2, number1Input2, login, gridPane, close);
 
 
         Scene scene = new Scene(gridPane);
@@ -105,6 +57,68 @@ public class App extends Application
 
     }
 
+    private class Display {
+        private Label label;
+        private Label number1;
+        private TextField numberInput1;
+        private Label number2;
+        private TextField number1Input2;
+
+        public Label getLabel() {
+            return label;
+        }
+
+        public Label getNumber1() {
+            return number1;
+        }
+
+        public TextField getNumberInput1() {
+            return numberInput1;
+        }
+
+        public Label getNumber2() {
+            return number2;
+        }
+
+        public TextField getNumber1Input2() {
+            return number1Input2;
+        }
+
+        public Display invoke() {
+            gridPane.setPadding(new Insets(12,12,12,12));
+
+
+            label = new Label("Calculate Binary");
+            GridPane.setConstraints(label,1,0);
+
+            // TODO  Number
+
+
+            number1 = new Label("Number 1 ");
+            GridPane.setConstraints(number1,0,1);
+            // Input
+            numberInput1 = new TextField("0");
+            GridPane.setConstraints(numberInput1,1,1);
+
+
+            number2 = new Label("Number 2");
+            GridPane.setConstraints(number2,0,3);
+            // Input
+            number1Input2 = new TextField("0");
+            GridPane.setConstraints(number1Input2,1,3);
+
+            login = new Button("Login");
+            close = new Button("Close");
+            GridPane.setConstraints(login,2,7);
+            GridPane.setConstraints(close,3,7);
+
+            close.setOnAction(event ->  {
+                event.consume();
+                Settings.closeProgramAndSave(window);
+            });
+            return this;
+        }
+    }
 
 
 //
