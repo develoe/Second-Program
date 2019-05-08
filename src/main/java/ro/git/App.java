@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import math.MathAurel;
+import math.MathAurelVlaicu;
 
 import java.awt.*;
 import java.util.Set;
@@ -24,7 +24,7 @@ import java.util.Set;
  * Hello world!
  *
  */
-public class App extends Application implements EventHandler<ActionEvent>
+public class App extends Application
 {   Stage window;
     public boolean result ;
     Button login,close;
@@ -32,7 +32,7 @@ public class App extends Application implements EventHandler<ActionEvent>
 
     public static void main( String[] args )
     {
-        System.out.println(Integer.toBinaryString(3));
+
         launch(args);
     }
 
@@ -113,15 +113,6 @@ public class App extends Application implements EventHandler<ActionEvent>
     }
 
 
-    @Override
-    public void handle(ActionEvent event) {
-        final Text actiontarget = new Text();
-        gridPane.add(actiontarget, 1, 8);
-        actiontarget.setText("Sign in button pressed");
-
-
-
-    }
 
 //
 
