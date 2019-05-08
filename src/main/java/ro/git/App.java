@@ -15,8 +15,10 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import math.MathAurel;
 
 import java.awt.*;
+import java.util.Set;
 
 /**
  * Hello world!
@@ -30,6 +32,7 @@ public class App extends Application implements EventHandler<ActionEvent>
 
     public static void main( String[] args )
     {
+        System.out.println(Integer.toBinaryString(3));
         launch(args);
     }
 
@@ -41,7 +44,7 @@ public class App extends Application implements EventHandler<ActionEvent>
         window.setMinHeight(500);
         window.setOnCloseRequest(event -> {
             event.consume();
-           Settings.closeProgramAndSave(window);
+            Settings.closeProgramAndSave(window);
         });
 
         gridPane.setPadding(new Insets(12,12,12,12));
@@ -54,27 +57,18 @@ public class App extends Application implements EventHandler<ActionEvent>
         // TODO  User
 
 
-        Label userName = new Label("User Name ");
+        Label userName = new Label("Number 1 ");
         GridPane.setConstraints(userName,0,1);
         // Input
-        TextField userInput = new TextField("a");
+        TextField userInput = new TextField("0");
         GridPane.setConstraints(userInput,1,1);
 
 
-        Label number1 = new Label("Number1 ");
+        Label number1 = new Label("Number 2");
         GridPane.setConstraints(number1,0,3);
         // Input
-        TextField number1Input= new TextField("Number 2");
+        TextField number1Input= new TextField("0");
         GridPane.setConstraints(number1Input,1,3);
-
-
-        // TODO Password
-        Label password = new Label("Password");
-        GridPane.setConstraints(password,0,4);
-        // Input
-        TextField passwordInput = new TextField();
-        passwordInput.setPromptText("password");
-        GridPane.setConstraints(passwordInput,1,4);
 
         login = new Button("Login");
         close = new Button("Close");
@@ -82,11 +76,8 @@ public class App extends Application implements EventHandler<ActionEvent>
         GridPane.setConstraints(close,3,7);
 
         close.setOnAction(event ->  {
-          event.consume();
-          GridPane.setConstraints(label,1,10);
-
-          label.setTextFill(Color.FIREBRICK);
-          label.setText("this is close");
+            event.consume();
+            Settings.closeProgramAndSave(window);
         });
 
 
@@ -96,16 +87,22 @@ public class App extends Application implements EventHandler<ActionEvent>
 
                 int nmb1 = Integer.parseInt(number1Input.getText());
                 int nmb2 = Integer.parseInt(userInput.getText());
-                System.out.println(nmb1 + " + " + nmb2 + " = " + Settings.calcSum(nmb1, nmb2));
+                int nmb3 = Settings.calcSum(nmb1,nmb2);
+                event.consume();
+                GridPane.setConstraints(label,1,12);
+
+                label.setTextFill(Color.FIREBRICK);
+
+                label.setText(Integer.toBinaryString(nmb2) + " + " +Integer.toBinaryString(nmb1) + " = " + Integer.toBinaryString(nmb3));
             }
             catch (NumberFormatException e){
-                System.out.println("Nu ai introdus ce trb" + e);
+                System.out.println("Nu ai introdus ce trb");
             }
             }
             );
 
 
-        gridPane.getChildren().addAll(label,userName,userInput,number1,number1Input,password,passwordInput,login,close);
+        gridPane.getChildren().addAll(label,userName,userInput,number1,number1Input,login,close);
 
 
         Scene scene = new Scene(gridPane);

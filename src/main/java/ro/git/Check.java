@@ -1,5 +1,6 @@
 package ro.git;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -37,7 +38,7 @@ public class Check {
 
     VBox layout = new VBox(20);
     layout.getChildren().addAll(label,save,close);
-
+    layout.setAlignment(Pos.TOP_CENTER);
     Scene scene = new Scene(layout);
 
     window.setScene(scene);
