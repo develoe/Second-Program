@@ -1,24 +1,16 @@
 package ro.git;
 
-
-import com.sun.javafx.css.Size;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Dimension2D;
 import javafx.geometry.Insets;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
+
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import math.MathAurelVlaicu;
 
-import java.awt.*;
-import java.util.Set;
 
 /**
  * Hello world!
@@ -30,6 +22,7 @@ public class App extends Application
     Button login,close;
     GridPane gridPane = new GridPane();
 
+
     public static void main( String[] args )
     {
 
@@ -40,8 +33,8 @@ public class App extends Application
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
         window.setTitle("Main");
-        window.setMinWidth(500);
-        window.setMinHeight(500);
+        window.setMinWidth(700);
+        window.setMinHeight(100);
         window.setOnCloseRequest(event -> {
             event.consume();
             Settings.closeProgramAndSave(window);
@@ -51,7 +44,7 @@ public class App extends Application
 
 
 
-        Label label = new Label("This is a main");
+        Label label = new Label("Calculate Binary");
         GridPane.setConstraints(label,1,0);
 
         // TODO  User
@@ -93,7 +86,7 @@ public class App extends Application
 
                 label.setTextFill(Color.FIREBRICK);
 
-                label.setText(Integer.toBinaryString(nmb2) + " + " +Integer.toBinaryString(nmb1) + " = " + Integer.toBinaryString(nmb3));
+                label.setText("Result :------> "+ Integer.toBinaryString(nmb2) + " + " +Integer.toBinaryString(nmb1) + " = " + Integer.toBinaryString(nmb3));
             }
             catch (NumberFormatException e){
                 System.out.println("Nu ai introdus ce trb");
