@@ -10,22 +10,23 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+import java.util.Scanner;
+
 
 /**
  * Hello world!
- *
  */
-public class App extends Application
-{   Stage window;
-    public boolean result ;
-    Button login,close;
+public class App extends Application {
+    Stage window;
+    public boolean result;
+    Button login, close;
     GridPane gridPane = new GridPane();
 
 
-    public static void main( String[] args )
-    {
-
+    public static void main(String[] args) {
+//        System.out.println('a'+'b');
         launch(args);
+
     }
 
     @Override
@@ -33,7 +34,7 @@ public class App extends Application
         window = primaryStage;
         window.setTitle("Main");
         window.setMinWidth(700);
-        window.setMinHeight(100);
+        window.setMinHeight(400);
         window.setOnCloseRequest(event -> {
             event.consume();
             Settings.closeProgramAndSave(window);
@@ -41,17 +42,18 @@ public class App extends Application
 
         Display display = new Display().invoke();
         Label label = display.getLabel();
+        Label label1 = display.getLabel1();
         Label number1 = display.getNumber1();
         TextField numberInput1 = display.getNumberInput1();
         Label number2 = display.getNumber2();
         TextField number1Input2 = display.getNumber1Input2();
 
 
-        Settings.loginAction(label, number1, numberInput1, number2, number1Input2, login, gridPane, close);
+
+        Settings.loginAction(label,label1, number1, numberInput1, number2, number1Input2, login, gridPane, close);
 
 
         Scene scene = new Scene(gridPane);
-
         window.setScene(scene);
         window.show();
 
@@ -59,15 +61,17 @@ public class App extends Application
 
     private class Display {
         private Label label;
+
         private Label number1;
         private TextField numberInput1;
         private Label number2;
         private TextField number1Input2;
+        private Label label1;
 
         public Label getLabel() {
             return label;
         }
-
+        public Label getLabel1(){return label1;}
         public Label getNumber1() {
             return number1;
         }
@@ -85,34 +89,36 @@ public class App extends Application
         }
 
         public Display invoke() {
-            gridPane.setPadding(new Insets(12,12,12,12));
+            gridPane.setPadding(new Insets(12, 12, 12, 12));
 
+            label1 = new Label("");
+            GridPane.setConstraints(label1,3,0);
 
             label = new Label("Calculate Binary");
-            GridPane.setConstraints(label,1,0);
+            GridPane.setConstraints(label, 1, 0);
 
             // TODO  Number
 
 
             number1 = new Label("Number 1 ");
-            GridPane.setConstraints(number1,0,1);
+            GridPane.setConstraints(number1, 0, 1);
             // Input
             numberInput1 = new TextField("0");
-            GridPane.setConstraints(numberInput1,1,1);
+            GridPane.setConstraints(numberInput1, 1, 1);
 
 
             number2 = new Label("Number 2");
-            GridPane.setConstraints(number2,0,3);
+            GridPane.setConstraints(number2, 0, 3);
             // Input
             number1Input2 = new TextField("0");
-            GridPane.setConstraints(number1Input2,1,3);
+            GridPane.setConstraints(number1Input2, 1, 3);
 
-            login = new Button("Login");
+            login = new Button("Send");
             close = new Button("Close");
-            GridPane.setConstraints(login,2,7);
-            GridPane.setConstraints(close,3,7);
+            GridPane.setConstraints(login, 2, 7);
+            GridPane.setConstraints(close, 3, 7);
 
-            close.setOnAction(event ->  {
+            close.setOnAction(event -> {
                 event.consume();
                 Settings.closeProgramAndSave(window);
             });
